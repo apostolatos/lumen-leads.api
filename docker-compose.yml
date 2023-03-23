@@ -17,6 +17,22 @@ services:
     networks:
       - leads
 
+  mongo:
+    image: mongo:latest
+    container_name: leads-mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: leads
+    ports:
+      - 27017:27017
+    volumes: 
+      - /data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - leads
+
   nginx:
     image: nginx:alpine
     container_name: leads-nginx
