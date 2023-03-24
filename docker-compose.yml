@@ -9,26 +9,31 @@ services:
       context: ./app
       dockerfile: Dockerfile
     image: leads
+    user: 1000:000
     container_name: leads-app
     restart: always
     working_dir: /var/www/
     volumes:
       - ./app:/var/www
+    links:
+      - mongo
+    depends_on:
+      - mongo
     networks:
       - leads
 
   mongo:
     image: mongo:latest
-    container_name: leads-mongodb
+    container_name: mongodb
     restart: always
     environment:
+      MONGO_INITDB_DATABASE: mongo
       MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
-      MONGO_INITDB_DATABASE: leads
+      MONGO_INITDB_ROOT_PASSWORD: password
     ports:
       - 27017:27017
-    volumes: 
-      - /data/db
+    volumes:
+      - ./data/db:/data/db
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     networks:
       - leads
@@ -42,6 +47,10 @@ services:
     volumes:
       - ./app:/var/www
       - ./docker-compose/nginx:/etc/nginx/conf.d/
+    links:
+      - mongo
+    depends_on:
+      - mongo
     networks:
       - leads
 

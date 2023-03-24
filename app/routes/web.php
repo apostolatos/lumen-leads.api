@@ -1,6 +1,7 @@
 <?php
 
 /** @var \Laravel\Lumen\Routing\Router $router */
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,10 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    try {
+        DB::connection()->getPDO();
+            return $router->app->version();
+        } catch (\Exception $e) {
+        echo '<h1>No database selected</h1>';
+    }
 });

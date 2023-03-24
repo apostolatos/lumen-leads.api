@@ -7,6 +7,13 @@ use Illuminate\Support\Facades\Schema;
 class CreateTableLeads extends Migration
 {
     /**
+     * The name of the database connection to use.
+     *
+     * @var string
+     */
+    protected $connection = 'mongodb';
+
+    /**
      * Run the migrations.
      *
      * @return void
@@ -14,8 +21,14 @@ class CreateTableLeads extends Migration
     public function up()
     {
         Schema::create('leads', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            Schema::connection($this->connection)->
+            table('Leads', function (Blueprint $collection) {
+                $collection->index('id');
+                $collection->string('full_name');
+                $collection->string('email_address');
+                $collection->string('industry');
+                $collection->timestamps();
+            });
         });
     }
 
@@ -26,6 +39,10 @@ class CreateTableLeads extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('leads');
+        Schema::connection($this->connection)
+            ->table('Leads', function (Blueprint $collection)
+            {
+                $collection->drop();
+            });
     }
 }

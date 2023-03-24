@@ -1,6 +1,20 @@
 <?php
 
 return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | PDO Fetch Style
+    |--------------------------------------------------------------------------
+    |
+    | By default, database results will be returned as instances of the PHP
+    | stdClass object; however, you may desire to retrieve records in an
+    | array format for simplicity. Here you can tweak the fetch style.
+    |
+    */
+
+    'fetch' => PDO::FETCH_CLASS,
+
     /*
     |--------------------------------------------------------------------------
     | Default Database Connection Name
@@ -33,11 +47,12 @@ return [
    'connections' => [
         'mongodb' => [
             'driver' => 'mongodb',
-            'host' => 'leads-mongodb',
-            'port' => 27017,
-            'database' => env('MONGO_DB_DATABASE'),
-            'username' => env('MONGO_DB_USERNAME'),
-            'password' => env('MONGO_DB_PASSWORD'),
+            // 'dsn' => 'mongodb://root:password@mongodb',
+            'host' => env('MONGO_DB_HOST', '127.0.0.1'),
+            'port' => env('MONGO_DB_PORT', 27017),
+            'database' => env('MONGO_DB_DATABASE', 'mongo'),
+            'username' => env('MONGO_DB_USERNAME', 'root'),
+            'password' => env('MONGO_DB_PASSWORD', 'password'),
             'options' => [
                 // here you can pass more settings to the Mongo Driver Manager
                 // see https://www.php.net/manual/en/mongodb-driver-manager.construct.php under "Uri Options" for a list of complete parameters that you can use
@@ -46,4 +61,17 @@ return [
             ]
         ],
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Migration Repository Table
+    |--------------------------------------------------------------------------
+    |
+    | This table keeps track of all the migrations that have already run for
+    | your application. Using this information, we can determine which of
+    | the migrations on disk haven't actually been run in the database.
+    |
+    */
+
+    'migrations' => 'migrations',
 ];
