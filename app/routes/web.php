@@ -22,3 +22,11 @@ $router->get('/', function () use ($router) {
         echo '<h1>No database selected</h1>';
     }
 });
+
+$router->group(['prefix' => 'api'], function () use ($router) {
+    $router->get('lead', ['uses' => 'LeadController@index']);
+    $router->get('lead/{id}', ['uses' => 'LeadController@show']);
+    $router->post('lead', ['uses' => 'LeadController@create']);
+    $router->put('lead', ['uses' => 'LeadController@update']);
+    $router->delete('lead', ['uses' => 'LeadController@delete']);
+});

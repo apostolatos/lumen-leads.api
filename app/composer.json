@@ -6,13 +6,15 @@
     "type": "project",
     "require": {
         "php": "^7.3|^8.0",
+        "guzzlehttp/guzzle": "*",
         "jenssegers/mongodb": "*",
         "laravel/lumen-framework": "^8.3.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
         "mockery/mockery": "^1.3.1",
-        "phpunit/phpunit": "^9.5.10"
+        "phpunit/phpunit": "^9.5.10",
+        "guzzlehttp/guzzle" : "^7.5.0"
     },
     "autoload": {
         "psr-4": {

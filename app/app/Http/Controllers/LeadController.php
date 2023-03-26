@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Lead;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Traits\CrudValidationTrait;
+use App\ActiveCampaign\ActiveCampaign;
 
 class LeadController extends Controller
 {
+    // use CrudValidationTrait;
+
     /**
      * Create a new controller instance.
      *
@@ -25,6 +29,7 @@ class LeadController extends Controller
     public function index()
     {
         $leads = Lead::all();
+
         return response()->json($leads);
     }
 
@@ -35,17 +40,28 @@ class LeadController extends Controller
      */
     public function create(Request $request)
     {
-        $lead = new Lead();
-        
-        $lead->full_name = $request->input('name');
-        $lead->surname = $request->input('email');
-        $lead->save();
+        $contact = app(ActiveCampaign::class)->contacts()->get(1);
 
-        DB::collection('Leads')->insert([
-            'full_name' => 'name1',
-            'email_address' => 'email_address',
-            'industry' => 'industry'
+        return response()->json($contact);
+
+        $lead = new Lead();
+
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:Leads',
+            'industry' => 'required'
         ]);
+
+        $lead->full_name = $request->input('name');
+        $lead->email = $request->input('email');
+        $lead->industry = $request->input('industry');
+        $lead->save();
+        
+        // $contactId = app(ActiveCampaign::class)->contacts()->create('info@example.com', [
+        //     'firstName' => 'John',
+        //     'lastName' => 'Doe',
+        //     'phone' => '+3112345678',
+        // ]);
 
         return response()->json($lead);
     }
@@ -60,7 +76,7 @@ class LeadController extends Controller
     public function get($id)
     {
         $lead = Lead::find($id);
-
+        
         return response()->json($lead);
     }
 

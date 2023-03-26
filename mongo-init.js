@@ -15,5 +15,5 @@ db.createUser({
     }]}
 );
 // user created
-db.createCollection("collection_leads");
+// db.createCollection("collection_leads");
 // add new collection
