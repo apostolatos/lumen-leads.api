@@ -38,30 +38,30 @@ class LeadController extends Controller
      * 
      * @param Request $request
      */
-    public function create(Request $request)
+    public function createOrUpdate(Request $request)
     {
-        $contact = app(ActiveCampaign::class)->contacts()->get(1);
-
-        return response()->json($contact);
-
-        $lead = new Lead();
-
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email|unique:Leads',
+            'email' => 'required|email',
             'industry' => 'required'
         ]);
+
+        if ($lead = Lead::where('email', $request->input('email'))->first()) {
+            return $this->update($request, $lead->id);
+        }
+
+        return $this->create($request);
+    }
+
+    public function create(Request $request)
+    {
+        $lead = new Lead();
 
         $lead->full_name = $request->input('name');
         $lead->email = $request->input('email');
         $lead->industry = $request->input('industry');
+
         $lead->save();
-        
-        // $contactId = app(ActiveCampaign::class)->contacts()->create('info@example.com', [
-        //     'firstName' => 'John',
-        //     'lastName' => 'Doe',
-        //     'phone' => '+3112345678',
-        // ]);
 
         return response()->json($lead);
     }
@@ -87,15 +87,9 @@ class LeadController extends Controller
      * @param $id
      * @return  \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        $lead = Lead::find($id);
-
-        $lead->name = $request->input('name');
-        $lead->surname = $request->input('surname');
-        $lead->username = $request->input('username');
-
-        $lead->save();
+        $lead = Lead::find($id)->update(['full_name' => $request->input('name')]);
 
         return response()->json($lead);
     }

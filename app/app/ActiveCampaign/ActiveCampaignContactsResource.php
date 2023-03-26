@@ -71,13 +71,12 @@ class ActiveCampaignContactsResource extends ActiveCampaignBaseResource
     {
         $contact = $this->request(
             method: 'put',
-            path: 'contacts/'.$contact->id,
+            path: 'contacts/'.$contact->active_campain_id,
             data: [
                 'contact' => [
                     'email' => $contact->email,
                     'firstName' => $contact->firstName,
                     'lastName' => $contact->lastName,
-                    'phone' => $contact->phone,
                 ],
             ],
             responseKey: 'contact'

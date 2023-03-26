@@ -27,6 +27,7 @@ class CreateTableLeads extends Migration
                 $collection->string('full_name');
                 $collection->string('email_address');
                 $collection->string('industry');
+                $collection->string('active_campain_id');
                 $collection->timestamps();
             });
         });

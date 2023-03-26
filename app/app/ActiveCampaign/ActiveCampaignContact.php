@@ -5,9 +5,8 @@ namespace App\ActiveCampaign;
 class ActiveCampaignContact
 {
     public function __construct(
-        $id,
+        $active_campain_id,
         $email,
-        $phone,
         $firstName,
         $lastName
     ) {

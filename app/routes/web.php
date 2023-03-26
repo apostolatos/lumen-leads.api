@@ -25,8 +25,8 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('lead', ['uses' => 'LeadController@index']);
+    $router->post('lead', ['uses' => 'LeadController@createOrUpdate']);
     $router->get('lead/{id}', ['uses' => 'LeadController@show']);
-    $router->post('lead', ['uses' => 'LeadController@create']);
     $router->put('lead', ['uses' => 'LeadController@update']);
     $router->delete('lead', ['uses' => 'LeadController@delete']);
 });
