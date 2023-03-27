@@ -1,13 +1,14 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# Lumen simple Application
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+This package provides a simple interface to the ActiveCampaign API v3.
 
-# Laravel simple Application
+Currently the packages only supports the endpoints `Contacts`.
+
+## Lumen Support
+
+| Version | Release |
+|---------|---------|
+|  8.3.x  |   1.0   |
 
 First of all we need to clone project:
 
@@ -17,41 +18,45 @@ A folder `\lumen-leads.api` is now created.
 
 `cd lumen-leads.api`
 
-Run Docker Compose
-
-now, create 3 containers
-
-# Build & Run
+## Build & Run
 
 `docker-compose up -d --build`
 
-Then install our dependencies:
+Now, create 3 containers
+
+## Then install our dependencies:
 
 `docker-exec leads-app composer install`
 
-Now, we need to create a database which is named `laravel_api`
+### 2. Publish the config file
 
 Copy **.env.example**
 
 Change the name with .env and make your own settings in .env file.
 
-- MONGO_DB_CONNECTION=mongodb
-- MONGO_DB_HOST=mongodb
-- MONGO_DB_PORT=27017
-- MONGO_DB_DATABASE=mongo
-- MONGO_DB_USERNAME=root
-- MONGO_DB_PASSWORD=password
+```env
+MONGO_DB_CONNECTION=mongodb
+MONGO_DB_HOST=mongodb
+MONGO_DB_PORT=27017
+MONGO_DB_DATABASE=mongo
+MONGO_DB_USERNAME=root
+MONGO_DB_PASSWORD=password
+```
 
+### 3. Add the base URL and API key to your .env
+
+```env
 - ACTIVE_CAMPAIGN_BASE_URL=https://dimitrisapostolatos.api-us1.com/api/3
 - ACTIVE_CAMPAIGN_API_KEY=a58358ae7bf8266b40eb678dcfc617a4307d53db7505a05365b9b0a5d105217009f5b2cc
+```
 
-Once the database is created, run the following console commands to install tables.
+## Run the following console commands to install tables.
 
 `php artisan migrate --seed`
 
 Our database is all set!
 
-# Run
+## Testing lumen application
 
 Navigate to http://localhost:8080 and you should see something like this
 
