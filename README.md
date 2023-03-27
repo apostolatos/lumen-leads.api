@@ -71,11 +71,11 @@ Navigate to [http://localhost:8080](http://localhost:8000/) and you should see s
 ### Response
 
     HTTP/1.1 201 Created
-    Date: Thu, 24 Feb 2011 12:36:31 GMT
+    Date: Thu, 24 Mar 2023 12:36:31 GMT
     Status: 201 Created
     Connection: close
     Content-Type: application/json
-    Location: /thing/2
+    Location: /lead
     Content-Length: 35
 
 ```json
@@ -101,11 +101,11 @@ Navigate to [http://localhost:8080](http://localhost:8000/) and you should see s
 ### Response
 
     HTTP/1.1 201 Created
-    Date: Thu, 24 Feb 2011 12:36:31 GMT
+    Date: Thu, 24 Mar 2023 12:36:31 GMT
     Status: 201 Created
     Connection: close
     Content-Type: application/json
-    Location: /thing/2
+    Location: /lead
     Content-Length: 35
     
  ```json
