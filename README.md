@@ -24,7 +24,7 @@ A folder `\lumen-leads.api` is now created.
 
 Now, create 3 containers
 
-## 2 Then install our dependencies:
+### 2 Then install our dependencies:
 
 `docker exec leads-app composer install`
 
@@ -78,7 +78,21 @@ Navigate to [http://localhost:8080](http://localhost:8000/) and you should see s
     Location: /thing/2
     Content-Length: 35
 
-    {"id":2,"name":"Bar","status":null}
+```json
+    [
+        {
+            "_id": "64214089682bbd70ef029da2",
+            "full_name": "Dimitrios Apostolatos",
+            "email": "test@test.com",
+            "industry": "2",
+            "active_campain_id": "9",
+            "updated_at": "2023-03-27T07:06:49.940000Z",
+            "created_at": "2023-03-27T07:06:49.940000Z",
+            "first_name": "Dimitrios",
+            "last_name": "Apostolatos"
+        }
+    ]
+```
     
  ### 1. Ceeate Leads
 
@@ -93,7 +107,8 @@ Navigate to [http://localhost:8080](http://localhost:8000/) and you should see s
     Content-Type: application/json
     Location: /thing/2
     Content-Length: 35
-
+    
+ ```json
    {
         "full_name": "Dimitrios Apostolatos",
         "email": "test@test.com",
@@ -105,5 +120,5 @@ Navigate to [http://localhost:8080](http://localhost:8000/) and you should see s
         "first_name": "Dimitrios",
         "last_name": "Apostolatos"
     }
-    
+```
  
