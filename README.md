@@ -26,7 +26,7 @@ Now, create 3 containers
 
 ## 2 Then install our dependencies:
 
-`docker-exec leads-app composer install`
+`docker exec leads-app composer install`
 
 ### 3. Publish the config file
 
@@ -46,8 +46,8 @@ MONGO_DB_PASSWORD=password
 ### 4. Add the base URL and API key to your .env
 
 ```env
-- ACTIVE_CAMPAIGN_BASE_URL=https://dimitrisapostolatos.api-us1.com/api/3
-- ACTIVE_CAMPAIGN_API_KEY=a58358ae7bf8266b40eb678dcfc617a4307d53db7505a05365b9b0a5d105217009f5b2cc
+ACTIVE_CAMPAIGN_BASE_URL=https://dimitrisapostolatos.api-us1.com/api/3
+ACTIVE_CAMPAIGN_API_KEY=a58358ae7bf8266b40eb678dcfc617a4307d53db7505a05365b9b0a5d105217009f5b2cc
 ```
 
 ### 5. Run the following console commands to install tables.
@@ -79,3 +79,31 @@ Navigate to [http://localhost:8080](http://localhost:8000/) and you should see s
     Content-Length: 35
 
     {"id":2,"name":"Bar","status":null}
+    
+ ### 1. Ceeate Leads
+
+`POST /api/lead`
+
+### Response
+
+    HTTP/1.1 201 Created
+    Date: Thu, 24 Feb 2011 12:36:31 GMT
+    Status: 201 Created
+    Connection: close
+    Content-Type: application/json
+    Location: /thing/2
+    Content-Length: 35
+
+   {
+        "full_name": "Dimitrios Apostolatos",
+        "email": "test@test.com",
+        "industry": "2",
+        "active_campain_id": "9",
+        "updated_at": "2023-03-27T07:06:49.940000Z",
+        "created_at": "2023-03-27T07:06:49.940000Z",
+        "_id": "64214089682bbd70ef029da2",
+        "first_name": "Dimitrios",
+        "last_name": "Apostolatos"
+    }
+    
+ 
