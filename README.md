@@ -18,17 +18,17 @@ A folder `\lumen-leads.api` is now created.
 
 `cd lumen-leads.api`
 
-## Build & Run
+## 1 Build & Run
 
 `docker-compose up -d --build`
 
 Now, create 3 containers
 
-## Then install our dependencies:
+## 2 Then install our dependencies:
 
 `docker-exec leads-app composer install`
 
-### 2. Publish the config file
+### 3. Publish the config file
 
 Copy **.env.example**
 
@@ -43,21 +43,39 @@ MONGO_DB_USERNAME=root
 MONGO_DB_PASSWORD=password
 ```
 
-### 3. Add the base URL and API key to your .env
+### 4. Add the base URL and API key to your .env
 
 ```env
 - ACTIVE_CAMPAIGN_BASE_URL=https://dimitrisapostolatos.api-us1.com/api/3
 - ACTIVE_CAMPAIGN_API_KEY=a58358ae7bf8266b40eb678dcfc617a4307d53db7505a05365b9b0a5d105217009f5b2cc
 ```
 
-## Run the following console commands to install tables.
+### 5. Run the following console commands to install tables.
 
 `php artisan migrate --seed`
 
 Our database is all set!
 
-## Testing lumen application
+### 6. Testing lumen application
 
-Navigate to http://localhost:8080 and you should see something like this
+Navigate to [http://localhost:8080](http://localhost:8000/) and you should see something like this
 
 `Lumen (8.3.4) (Laravel Components ^8.0)`
+
+## Usage
+
+### 1. Retrieve Leads
+
+`GET /api/lead`
+
+### Response
+
+    HTTP/1.1 201 Created
+    Date: Thu, 24 Feb 2011 12:36:31 GMT
+    Status: 201 Created
+    Connection: close
+    Content-Type: application/json
+    Location: /thing/2
+    Content-Length: 35
+
+    {"id":2,"name":"Bar","status":null}
